@@ -1,0 +1,16 @@
+{
+    "name": "serenity",
+    "version": "0.1",
+    "devDependencies": {
+
+    },
+    "dependencies": {
+        "angular": "~1.*",
+        "angular-ui-router": "~0.2",
+        "bootstrap": "~3.*",
+        "jquery": "~2.*",
+        "chosen": "~1.*",
+        "lodash": "~2.*",
+        "tablesorter": "~*"
+    }
+}

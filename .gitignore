@@ -1,0 +1,8 @@
+.DS_Store
+api/vendor/
+.sass-cache/
+Thumbs.db
+config.php
+.idea
+nbproject/
+node_modules/
