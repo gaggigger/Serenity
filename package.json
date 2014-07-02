@@ -1,22 +1,22 @@
 {
   "name": "Serenity",
-  "version": "2.0.0",
+  "version": "0.1",
   "description": "Dynamic Web Framework",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tests": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jfox015/OOTP-Fantasy-Leagues.git"
   },
-  "keywords": ["angularjs","slimphp","boostrap","myth.io","Eloquent","ORM"],
+  "keywords": ["angularjs","slimphp","boostrap","less","Eloquent","ORM"],
   "author": "Jeff Fox",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jfox015/OOTP-Fantasy-Leagues/issues"
+    "url": "https://github.com/jfox015/Serenity/issues"
   },
-  "homepage": "https://github.com/jfox015/OOTP-Fantasy-Leagues",
+  "homepage": "https://github.com/jfox015/Serenity",
   "devDependencies": {
     "bower": "^1.3.5",
     "grunt": "^0.4.5",
