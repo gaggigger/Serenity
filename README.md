@@ -10,7 +10,7 @@ Install Node.js and then:
 
 ```sh
 $ git clone git://github.com/jfox015/Serenity
-$ cd ng-Serenity
+$ cd Serenity
 $ npm -g install grunt-cli bower
 $ npm install
 $ bower install
