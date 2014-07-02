@@ -1,0 +1,39 @@
+<?php
+/**
+ * Display option for ideas
+ * Used to allow vetting of ideas first
+ *
+ * 0 : Unapproved
+ * 1 : Approved
+ */
+define('DISPLAY_OPTION', 1);
+
+/**
+ * Validation Language Directory
+ */
+define('VALIDATION_LANG_PATH', dirname(__FILE__) . '/app/lang/');
+
+/**
+ * Database Details
+ */
+$activeGroup = 'local';
+
+$db['local']['host'] = 'localhost';
+$db['local']['username'] = '';
+$db['local']['password'] = '';
+$db['local']['database'] = '';
+$db['local']['driver'] = 'mysql';
+$db['local']['prefix'] = '';
+$db['local']['collation'] = 'utf8_unicode_ci';
+$db['local']['charset'] = 'utf8';
+
+
+switch ($db[$activeGroup]['driver']) {
+	case 'mysql':
+		$providerString = sprintf('mysql:host=%s;dbname=%s', $db[$activeGroup]['host'], $db[$activeGroup]['database']);
+		break;
+	
+	default:
+		$providerString = null;
+		break;
+}
