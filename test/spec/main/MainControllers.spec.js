@@ -1,4 +1,4 @@
-
+'use strict';
 describe('MainControllers', function(){
 	
 	beforeEach(module('serenityApp'));

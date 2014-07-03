@@ -1,4 +1,5 @@
-angular.module('specMocks', []).service('PromiseMock', function() {
+angular.module('specMocks', []).service('PromiseMock', 
+    function() {
 	return function(response) {
 		this.then = function(callback) {
 			this.callback = callback;
@@ -11,4 +12,5 @@ angular.module('specMocks', []).service('PromiseMock', function() {
 			this.callback(response);
 		};
 	};
-});
+    }
+);

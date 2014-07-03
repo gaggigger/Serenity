@@ -11,9 +11,8 @@
  */
 angApp
 .value('isAdmin', false)
-.value('testMode', false)
-.constant('config', {
-    mode: 'development'
+.value('config', {
+    mode: 'development' // options development, test, staging, production
 })
 .constant('paths', {
     /**
@@ -27,8 +26,14 @@ angApp
         "user": '/app/data/user.json',
         "users": '/app/data/users.json'
     },
+    test: {
+        "login": '/app/data/user.json',
+        "logout": '/app/data/logout.json',
+        "user": '/app/data/user.json',
+        "users": '/app/data/users.json'
+    },
     live: {
-        "login": '/login/:userId/:password/:token',
+        "login": '/api/login/:userId/:password/:token',
         "logout": '/login/:userId',
         "user": '/user/:userId',
         "users": '/users/'

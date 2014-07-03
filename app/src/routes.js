@@ -35,6 +35,10 @@ angApp.constant('partialsPath', 'app/src/')
                     controller: 'AdminController',
                     authorizedRoles: [USER_ROLES.admin]
             }).
+            when('/404', {
+                    templateUrl: partialsPath+'main/404.html',
+                    authorizedRoles: [USER_ROLES.all]
+            }).
             otherwise({redirectTo: "/home" });
     }
 ])

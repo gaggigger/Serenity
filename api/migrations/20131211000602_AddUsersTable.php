@@ -24,8 +24,10 @@ class AddUsersTable extends Migration
         $this->schema->create($this->tableName, function ($table)
         {
             $table->increments('id');
+            $table->string('username');
             $table->string('email');
             $table->string('password');
+            $table->string('password_salt');
             $table->text('permissions')->nullable();
             $table->boolean('activated')->default(0);
             $table->string('activation_code')->nullable();
@@ -33,11 +35,9 @@ class AddUsersTable extends Migration
             $table->timestamp('last_login')->nullable();
             $table->string('persist_code')->nullable();
             $table->string('reset_password_code')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('display_name', 120)->nullable();
-            $table->string('twitter', 120)->nullable();
+            $table->integer('created_on');
             $table->integer('created_by');
+            $table->integer('updated_on')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -46,6 +46,7 @@ class AddUsersTable extends Migration
             // support the indexes, other engines aren't affected.
             $table->engine = 'InnoDB';
             $table->unique('email');
+            $table->unique('username');
             $table->index('activation_code');
             $table->index('reset_password_code');
         });
