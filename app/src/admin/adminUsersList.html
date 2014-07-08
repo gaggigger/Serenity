@@ -1,0 +1,51 @@
+<div class="body-nav body-nav-vertical body-nav-fixed">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="/admin">
+                    <i class="icon-dashboard icon-large"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="/users">
+                    <i class="icon-user icon-large"></i> Users
+                </a>
+            </li>
+            <li>
+                <a href="/settings">
+                    <i class="icon-cogs icon-large"></i> Settings
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class='container'>
+    <div id="body-content">
+        <div class="span12">
+            <h2>Current Users</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>User Type</th>
+                        <th>Date Joined</th>
+                        <th>User Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  data-ng-if="users" data-ng-repeat="user in users">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.role | userRoleFilter }}</td>
+                        <td>{{ user.dateJoined | dateJoinedFilter }}</td>
+                        <td>{{ user.group }}</td>
+                    </tr>
+                    <tr data-ng-if="!users">
+                        <td colspan="4">No users were found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    

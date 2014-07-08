@@ -21,6 +21,13 @@ angApp
   member: 'Member',
   guest: 'Guest'
 })
+.filter('userRoleFilter', ['USER_ROLES',
+    function(USER_ROLES) {
+        return function(input) {
+            return USER_ROLES[input];
+        };
+    }
+])
 .constant('AUTH_GROUPS', {
   all: '*',
   admin: 'Administrators',

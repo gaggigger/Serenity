@@ -1,44 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>Share My Ideas</title> 
-		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/app.css" />
-	</head>
-	
-	<body>
-		<div class="container">
-			<div id="header">
-				<div class="row">
-					<a href="/" id="logo"><span>Share my ideas</span></a>
-					<nav class="right">
-						<ul class="link-list">
-							{% if isLoggedIn %}
-							<li><a href="{{ urlFor('profile') }}">Account</a></li>
-							<li><a href="{{ urlFor('logout') }}">Logout</a></li>
-							{% else %}
-							<li><a href="{{ urlFor('login') }}">Login</a></li>
-							<li><a href="{{ urlFor('signup') }}">Sign Up</a></li>
-							{% endif %}
-						</ul>
-					</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Serenity API</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+    <link rel="stylesheet" type="text/css" href="../css/build/customize-template.css" />
+</head>
 
-					<ul id="navigation" class="twelve columns">
-						<li><a href="/" class="active"><span>Home</span></a></li>
-						<li class="addyouridea"><a href="#addyouridea"><span>Add Your Idea</span></a></li>
-					</ul>
-				</div>
-			</div><!-- /header -->
+<body>
+    <div class="container">
+        <header>
+            <div class="row">
+                <a href="/" id="logo"><span>Serenity Backend API</span></a>
+                <nav class="right">
+                    <ul class="link-list">
+                        {% if isLoggedIn %}
+                        <li><a href="{{ urlFor('profile') }}">Account</a></li>
+                        <li><a href="{{ urlFor('logout') }}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{{ urlFor('login') }}">Login</a></li>
+                        <li><a href="{{ urlFor('signup') }}">Sign Up</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
 
-			<div class="row">
-				<div id="content">
-					{% block notification %}{% endblock %}
-					{% block content %}{% endblock %}
-				</div>
-			</div>
-		</div><!-- /.container -->
+                <ul id="navigation" class="twelve columns">
+                    <li><a href="/" class="active"><span>Home</span></a></li>
+                </ul>
+            </div>
+        </header>
 
-		{% block js %}{% endblock %}
-	</body>
+        <div class="row">
+            <div id="content">
+                {% block notification %}{% endblock %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    {% block js %}{% endblock %}
+</body>
 </html>

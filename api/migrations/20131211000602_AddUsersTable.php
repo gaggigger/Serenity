@@ -35,9 +35,7 @@ class AddUsersTable extends Migration
             $table->timestamp('last_login')->nullable();
             $table->string('persist_code')->nullable();
             $table->string('reset_password_code')->nullable();
-            $table->integer('created_on');
             $table->integer('created_by');
-            $table->integer('updated_on')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();

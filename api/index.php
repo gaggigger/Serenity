@@ -9,14 +9,16 @@ require_once "app/application.php";
 // Controllers
 require_once "app/controller.php";
 require_once "app/controllers/login.controller.php";
-require_once "app/controllers/ideas.controller.php";
+require_once "app/controllers/api.controller.php";
+require_once "app/controllers/admin.controller.php";
 
 // Models
 require_once "app/models/BaseModel.php";
-require_once "app/models/Idea.php";
+require_once "app/models/Users.php";
+//require_once "app/models/Idea.php";
 
-define('APPLICATION', 'Share My Ideas');
-define('VERSION', '1.0.0');
+define('APPLICATION', 'Serentiy RESTful API');
+define('VERSION', '0.1');
 define('EXT', '.twig');
 
 use Slim\Slim;

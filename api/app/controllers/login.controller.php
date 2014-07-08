@@ -10,41 +10,48 @@ class LoginController extends Controller {
 
 	public function index()
 	{
-		if ($this->app->request()->isPost()) {
-            $v = $this->validator($this->post());
-            $v->rule('required', array('email', 'password'));
-            $v->rule('length', 'email', 4, 22);
-            $v->rule('length', 'password', 3, 11);
-            if ($v->validate()) {
-                try {
-                    $credentials = array(
-                        'email' => $this->post('email'),
-                        'password' => $this->post('password'),
-                    );
-                    $remember = $this->post('remember');
-                    $user = Sentry::authenticate($credentials, $remember);
+            if ($this->app->request()->isPost()) 
+            {
+                $v = $this->validator($this->post());
+                $v->rule('required', array('email', 'password'));
+                $v->rule('length', 'email', 4, 22);
+                $v->rule('length', 'password', 3, 11);
+                if ($v->validate()) 
+                {
+                    try 
+                    {
+                        $credentials = array(
+                            'email' => $this->post('email'),
+                            'password' => $this->post('password'),
+                        );
+                        $remember = $this->post('remember');
+                        $user = Sentry::authenticate($credentials, $remember);
 
-                    if ($user) {
-                        $this->successFlash('Your login was successful. Please wait while we redirect you...');
-                        $this->redirect('home');
+                        if ($user) {
+                            $this->responseArr = $this->responseArr + array('name'=>$user.name, 'role'=>$user.role);
+                        }
                     }
-                } catch (UserNotFoundException $e) {
-                    $this->errorFlash('Email and Password provided did not match any records.');
-                } catch (UserNotActivatedException $e) {
-                    $this->errorFlash('User is not activated.');
-                }
-                catch (UserSuspendedException $e) {
-                    $this->errorFlash('User is currently suspended.');
-                }
-                catch (UserBannedException $e) {
-                    $this->errorFlash('User is currently banned.');
-                }
+                    catch (UserNotFoundException $e) {
+                        $this->responseArr['message'] = 'Email and Password provided did not match any records.';
+                    } 
+                    catch (UserNotActivatedException $e) {
+                        $this->responseArr['message'] = 'User is not activated.';
+                    }
+                    catch (UserSuspendedException $e) {
+                        $this->responseArr['message'] = 'User is currently suspended.';
+                    }
+                    catch (UserBannedException $e) {
+                        $this->responseArr['message'] = 'User is currently banned.';
+                    }
+                    if ($this->responseArr['message'] !== 'OK') {
+                        $this->responseArr['status'] = 500;
+                    }
+                    $this->response($this->responseArr);
+                } // if ($v->validate()) 
+            } else {
+                $this->response($this->responseArr);
             }
-            $this->app->flashNow('error', $this->errorOutput($v->errors()));
-		}
-		$this->render('login/index');
 	}
-
 	public function signUp()
 	{
 		if ($this->app->request()->isPost()) {
@@ -83,16 +90,20 @@ class LoginController extends Controller {
 
 	public function logout()
 	{
-		$this->app->flash('info', 'Come back sometime soon');
+		//$this->app->flash('info', 'Come back sometime soon');
 		$this->auth->logout(true);
-		$this->redirect('login');
+		//$this->redirect('login');
+                $this->responseArr = $this->responseArr + array('name'=>'', 'role'=>'');
+                $this->response($this->responseArr);
 	}
 
 	public function forgot()
 	{
 		if (!Sentry::check()) {
-			$this->redirect('/', false);
-		}
-		$this->render('login/forgot');
+		//	$this->redirect('/', false);
+		//}
+		//$this->render('login/forgot');
+                   $this->response($this->responseArr); 
+                }
 	}
 }

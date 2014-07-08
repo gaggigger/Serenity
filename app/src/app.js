@@ -31,7 +31,6 @@
  */
 var angApp = angular.module("serenityApp", ['ngRoute', 'ngResource', 'angular-md5'])
 
-
 .controller("NavController", ['$scope', 'AuthProvider', 'AUTH_EVENTS', 'USER_ROLES', 'SessionService', 'isAdmin',
     function($scope, AuthProvider, AUTH_EVENTS, USER_ROLES, SessionService, isAdmin) {
        

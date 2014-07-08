@@ -1,0 +1,43 @@
+{
+    "status": 200,
+    "error": false,
+    "userCount":4,
+    "users": [
+        {
+            "name": "Jeff Fox",
+            "email": "jfox015@gmail.com",
+            "emailPublic": false,
+            "userId": "jfox015",
+            "role": "admin",
+            "dateJoined": "2014-06-01",
+            "group": "Administrators"
+        },
+        {
+            "name": "Ginger Baker",
+            "email": "gbaker@gmail.com",
+            "emailPublic": true,
+            "userId": "gBaker47362",
+            "role": "member",
+            "dateJoined": "2014-07-06",
+            "group": "Cream Band"
+        },
+        {
+            "name": "Jack Bruce",
+            "email": "jbruce@gmail.com",
+            "emailPublic": true,
+            "userId": "jbruce",
+            "role": "editor",
+            "dateJoined": "2014-07-06",
+            "group": "Cream Band"
+        },
+        {
+            "name": "Eric Clapton",
+            "email": "eclapton@gmail.com",
+            "emailPublic": true,
+            "userId": "eclapton",
+            "role": "member",
+            "dateJoined": "2014-07-06",
+            "group": "Cream Band"
+        }
+    ]
+}

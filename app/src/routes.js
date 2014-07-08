@@ -35,6 +35,16 @@ angApp.constant('partialsPath', 'app/src/')
                     controller: 'AdminController',
                     authorizedRoles: [USER_ROLES.admin]
             }).
+            when('/users', {
+                    templateUrl: partialsPath+'admin/adminUsersList.html',
+                    controller: 'AdminUsersController',
+                    authorizedRoles: [USER_ROLES.admin]
+            }).
+            when('/settings', {
+                    templateUrl: partialsPath+'admin/adminSettings.html',
+                    controller: 'AdminSettingsController',
+                    authorizedRoles: [USER_ROLES.admin]
+            }).
             when('/404', {
                     templateUrl: partialsPath+'main/404.html',
                     authorizedRoles: [USER_ROLES.all]

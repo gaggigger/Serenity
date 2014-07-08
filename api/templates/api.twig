@@ -1,0 +1,19 @@
+{% extends 'site.twig' %}
+
+{% block content %}
+    <div>
+        <h1>Serentiy RESTful API</h1>
+        <p>
+            Built using and MVC implementation of Slim PHP, the Eloquent ORM database library,
+            Sentry authentication and the Twig PHP Templating system.
+            
+            <a href="{{ urlFor('login') }}">Authenticate</a> to see a list of available API methods.
+        </p>
+    </div>
+
+    {% if auth.isLoggedIn() %}
+    <div>
+        You are logged in and have access to more functions here.
+    </div>
+    {% endif %}
+{% endblock %}
