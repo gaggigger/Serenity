@@ -9,7 +9,7 @@
         "vlucas/valitron": "1.0.3"
     },
     "require-dev": {
-        "davedevelopment/phpmig": "0.5.*@dev",
+        "davedevelopment/phpmig": "1.*",
         "pimple/pimple": "1.*"
     },
 	"autoload": {

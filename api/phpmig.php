@@ -1,12 +1,13 @@
 <?php
 define('ENVIRONMENT', isset($_SERVER['APP_ENV']) ? $_SERVER['APP_ENV'] : 'production');
 
+# phpmig.php
+
 $config = array();
 require_once "config.php";
 
-use \Phpmig\Pimple\Pimple,
-    \Illuminate\Database\Capsule\Manager as Capsule,
-    \Phpmig\Adapter;
+use \Phpmig\Adapter,
+    \Pimple;
 
 $container = new Pimple();
 

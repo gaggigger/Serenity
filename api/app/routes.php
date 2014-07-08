@@ -25,7 +25,7 @@ $app->get('/logout', function () use ($app) {
 })->name('logout');
 
 $app->get('/users', function () use ($app) {
-    $app->AdminController->users();
+    $app->AdminController->allUsers();
 })->name('users');
 
 $app->map('/register', function () use ($app) {
