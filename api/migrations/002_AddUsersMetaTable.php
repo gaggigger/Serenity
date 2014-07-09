@@ -1,6 +1,6 @@
 <?php
 
-use Phpmig\Migration\Migration;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class AddUsersMetaTable extends Migration
 {

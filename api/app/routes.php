@@ -29,13 +29,13 @@ $app->get('/users', function () use ($app) {
 })->name('users');
 
 $app->map('/register', function () use ($app) {
-    $app->LoginController->signUp();
+    $app->LoginController->register();
 })
 ->via('GET', 'POST')
 ->name('signup');
 
 $app->map('/forgot', function () use ($app) {
-    $app->LoginController->forgot();
+    $app->LoginController->forgotPassword();
 })
 ->via('GET', 'POST')
 ->name('forgot_password');

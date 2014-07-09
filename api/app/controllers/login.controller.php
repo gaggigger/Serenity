@@ -52,40 +52,44 @@ class LoginController extends Controller {
                 $this->response($this->responseArr);
             }
 	}
-	public function signUp()
+	public function register()
 	{
-		if ($this->app->request()->isPost()) {
-            $v = $this->validator($this->post());
-            $v->rule('required', array('email', 'password'));
-            $v->rule('email', 'email');
-            $v->rule('length', 'password', 3, 11);
-            if ($v->validate()) {
-                try {
-                    $credentials = array(
-                        'email' => $this->post('email'),
-                        'password' => $this->post('password'),
-                    );
+            if ($this->app->request()->isPost()) 
+            {
+                $v = $this->validator($this->post());
+                $v->rule('required', array('email', 'password'));
+                $v->rule('email', 'email');
+                $v->rule('length', 'password', 3, 11);
+                if ($v->validate()) {
+                    try 
+                    {
+                        $credentials = array(
+                            'email' => $this->post('email'),
+                            'password' => $this->post('password'),
+                        );
 
-                    $user = Sentry::register($credentials, true);
+                        $user = Sentry::register($credentials, true);
 
-                    if ($user) {
-                        /* Login right after signup */
-                        Sentry::authenticate($credentials);
+                        if ($user) {
+                            /* Login right after signup */
+                            Sentry::authenticate($credentials);
 
-                        $this->successFlash('Your registration was successful.');
-                        $this->redirect('home');
-                    } else {
-                        $this->errorFlash('User information was not updated successfully.');
+                            $this->responseArr['message'] = 'Your registration was successful.';
+                        } else {
+                            $this->responseArr['message'] = 'User information was not updated successfully.';
+                            $this->responseArr['status'] = 500;
+                        }
+                    } catch (UserExistsException $e) {
+                        $this->responseArr['message'] = 'User with this login already exists.';
+                        $this->responseArr['status'] = 500;
+                    } catch (UserNotFoundException $e) {
+                        $this->responseArr['message'] = 'User was not found.';
+                        $this->responseArr['status'] = 500;
                     }
-                } catch (UserExistsException $e) {
-                    $this->errorFlash('User with this login already exists.');
-                } catch (UserNotFoundException $e) {
-                    $this->errorFlash('User was not found.');
                 }
+                $this->responseArr['errors'] = $this->errorOutput($v->errors());
+                $this->response($this->responseArr);
             }
-            $this->app->flashNow('error', $this->errorOutput($v->errors()));
-		}
-		$this->render('login/signup');
 	}
 
 	public function logout()
@@ -97,7 +101,7 @@ class LoginController extends Controller {
                 $this->response($this->responseArr);
 	}
 
-	public function forgot()
+	public function forgotPassword()
 	{
 		if (!Sentry::check()) {
 		//	$this->redirect('/', false);

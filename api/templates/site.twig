@@ -3,9 +3,9 @@
 {% block notification %}
 {% if flash.info or flash.error %}
 <div id="notification">
-	{% if flash.info %}<div class="alert-box success">{{ flash.info }}</div>{% endif %}
+	{% if flash.info %}<div class="alert alert-success">{{ flash.info }}</div>{% endif %}
 	{% if flash.error %}
-    <div class="alert-box alert">
+    <div class="alert alert-error">
         {% for error in flash.error %}
             {{ error }}<br>
         {% endfor %}

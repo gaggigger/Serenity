@@ -11,7 +11,7 @@ class AddThrottleTable extends Migration
 
     public function init()
     {
-        $this->tableName = 'throttle';
+        $this->tableName = 'users_throttle';
         $this->schema = $this->get('schema');
     }
 

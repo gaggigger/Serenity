@@ -7,15 +7,5 @@
         "ircmaxell/password-compat": "1.0.*",
         "twig/twig": "1.15.*",
         "vlucas/valitron": "1.0.3"
-    },
-    "require-dev": {
-        "davedevelopment/phpmig": "1.*",
-        "pimple/pimple": "1.*"
-    },
-	"autoload": {
-		"Redbean/redbean": "vendoe/redbean/rb.php"
-	},
-    "config": {
-        "bin-dir": "bin/"
     }
 }

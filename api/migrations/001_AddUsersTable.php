@@ -1,18 +1,19 @@
 <?php
 
-use Phpmig\Migration\Migration;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
-class AddUsersTable extends Migration
+class AddUsersTable
 {
     protected $tableName;
 
     /* @var \Illuminate\Database\Schema\Builder $schema */
     protected $schema;
 
-    public function init()
+    public function init($capsule)
     {
+        $this->schema = $capsule::schema();
         $this->tableName = 'users';
-        $this->schema = $this->get('schema');
+        //$this->schema = $this->get('schema');
     }
 
     /**
@@ -21,6 +22,7 @@ class AddUsersTable extends Migration
     public function up()
     {
         /* @var \Illuminate\Database\Schema\Blueprint $table */
+        $this->schema->dropIfExists($this->tableName);
         $this->schema->create($this->tableName, function ($table)
         {
             $table->increments('id');
@@ -48,6 +50,11 @@ class AddUsersTable extends Migration
             $table->index('activation_code');
             $table->index('reset_password_code');
         });
+        
+        DB::table($this->tableName)->insert(array('name' => 'Admin User', 'email' => 'admin@myapp.com', 'emailPublic' => false, 'userId' => 'admin', 'role' => 'admin', 'dateJoined' => date('Y-m-d'), 'group' => 'Administrators'));
+        DB::table($this->tableName)->insert(array('name' => 'Ginger Baker', 'email' => 'gbaker@myapp.com', 'emailPublic' => true, 'userId' => 'gBaker47362', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
+        DB::table($this->tableName)->insert(array('name' => 'Jack Bruce', 'email' => 'jbruce@myapp.com', 'emailPublic' => true, 'userId' => 'jbruce', 'role' => 'editor', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
+        DB::table($this->tableName)->insert(array('name' => 'Eric Clapton', 'email' => 'eclapton@myapp.com', 'emailPublic' => true, 'userId' => 'eclapton', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band')); 
     }
 
     /**

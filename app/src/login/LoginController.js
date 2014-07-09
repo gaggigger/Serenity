@@ -5,7 +5,7 @@ angApp.controller('LoginController', ['$scope', '$rootScope', '$location', 'Sess
 
         $scope.flash = flashMessaging;
         $scope.credentials = {
-            username: '',
+            email: '',
             password: ''
         };
 

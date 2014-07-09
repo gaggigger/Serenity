@@ -6,7 +6,7 @@ A starter kit for authentication enabled web applications using AngularJS, Twitt
 
 ## Quick Start
 
-Install Node.js and then:
+Install [Node.js](http://nodejs.org/} and then:
 
 ```sh
 $ git clone git://github.com/jfox015/Serenity
@@ -17,13 +17,19 @@ $ bower install
 $ grunt watch
 ```
 
-Finally, open `file:///path/to/Serenity/index.html` in your browser.
-
 Next install [Composer](http://getcomposer.org) and then:
 
 ```sh
+$ cd api
 $ composer install
 ```
+
+Open the file `[FILE_ROOT]\api\config.php.default` and save it as `config.php`. Update the database settings in this file to match your system and save.
+
+In the browser, navigate to `http://[SITE_ROOT]/api/install.php` to run the database migrations.
+
+Finally, open `file:///path/to/Serenity/index.html` in your browser to use the application.
+
 
 ## Bugs and feature requests
 
@@ -55,10 +61,9 @@ When completed, you'll be able to run the various Grunt commands provided from t
 Should you encounter problems with installing dependencies or running Grunt commands, uninstall all previous dependency versions (global and local). Then, rerun `npm install`.
 
 
-
 ## Contributing
 
-Contributions are welcome. Simply fork the repository, hack some changes and send a pull request.
+Contributions are welcome and encouraged. Great software doesn't come from a vacuum. Simply fork the repository, hack some changes and send a pull request.
 
 
 ## Community
@@ -83,7 +88,7 @@ Props to those whose code has helped shape this project!
 - [Gert Hengeveld](https://medium.com/@GHengeveld) [@GHengeveld](https://twitter.com/GHengeveld)
 - [Andrew Smith](https://github.com/silentworks) [@silentworks](https://twitter.com/silentworks) [sharemyideas Slim Starter App](https://github.com/silentworks/sharemyideas)
 - [Billy Yarosh](https://github.com/keaplogik) [@keaplogik](https://twitter.com/keaplogik) [Clean Dashboard Bootstrap Theme](https://github.com/keaplogik/Bootstrap-Clean-Dashboard-Theme)
-
+- [Kyle Ladd](https://github.com/kladd) [@kladd](https://twitter.com/kladd) [Slim & Eloquent](https://github.com/kladd/slim-eloquent)
 
 ## Copyright and license
 
