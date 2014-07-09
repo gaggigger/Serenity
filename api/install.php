@@ -55,11 +55,16 @@ class Install {
             require_once($file);
 
             $class = substr(basename($file, '.php'), 4);
-            echo("class = ".$class);
+            //echo("class = ".$class);
             $migration = new $class;
             $migration->init($capsule);
             if ($migration->up()) {
                 echo("Sucessfully installed ".$file."<br />");
+            }
+            if ($migration->seed === true) {
+                $seeder = $class."Seed";
+                $seedClass = new $seeder;
+                $seedClass->run();
             }
         }
     }
