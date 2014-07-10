@@ -15,10 +15,9 @@ require_once "app/controllers/admin.controller.php";
 // Models
 require_once "app/models/BaseModel.php";
 require_once "app/models/Users.php";
+require_once "app/models/Config.php";
 //require_once "app/models/Idea.php";
 
-define('APPLICATION', 'Serentiy RESTful API');
-define('VERSION', '0.1');
 define('EXT', '.twig');
 
 use Slim\Slim;

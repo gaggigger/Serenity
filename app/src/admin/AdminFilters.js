@@ -15,6 +15,9 @@ angApp
             if (typeof format === "undefined") format = 'shortDate';
             if (input.match("-")) {
                 input = input.split("-");
+                if (format !== "shortDate") {
+                    input[1] = input[1]-1;
+                }
                 date = new Date(input[0], input[1], input[2]);
             } else {
                 date = new Date(input);
@@ -32,7 +35,10 @@ angApp
                 case "utc":
                     dateStr = date.toUTCString();
                     break;
-                case "dateSTring":
+                case "gmt":
+                    dateStr = date.toGMTString();
+                    break;
+                case "dateString":
                     dateStr = date.toDateString();
                     break;
             }

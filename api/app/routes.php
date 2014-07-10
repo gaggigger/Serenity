@@ -20,6 +20,10 @@ $app->map('/login', function () use ($app) {
 ->via('GET', 'POST')
 ->name('login');
 
+$app->get('/install/:type', function () use ($app) {
+    $app->InstallController->run($type);
+})->name('install');
+
 $app->get('/logout', function () use ($app) {
     $app->LoginController->logout();
 })->name('logout');

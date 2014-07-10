@@ -6,7 +6,7 @@ A starter kit for authentication enabled web applications using AngularJS, Twitt
 
 ## Quick Start
 
-Install [Node.js](http://nodejs.org/} and then:
+Install [Node.js](http://nodejs.org) and then:
 
 ```sh
 $ git clone git://github.com/jfox015/Serenity

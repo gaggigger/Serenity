@@ -1,18 +1,14 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Sernity\Migration;
 
-class AddUsersMetaTable extends Migration
+class AddUsersMeta extends Migration
 {
-    protected $tableName;
-
-    /* @var \Illuminate\Database\Schema\Builder $schema */
-    protected $schema;
-
-    public function init()
+    public function init($capsule)
     {
+        parent::init();
+        $this->seed = false;
         $this->tableName = 'users_meta';
-        $this->schema = $this->get('schema');
     }
 
     /**
@@ -21,6 +17,7 @@ class AddUsersMetaTable extends Migration
     public function up()
     {
         /* @var \Illuminate\Database\Schema\Blueprint $table */
+        $this->schema->dropIfExists($this->tableName);
         $this->schema->create($this->tableName, function ($table)
         {
             $table->increments('id');
@@ -51,6 +48,7 @@ class AddUsersMetaTable extends Migration
             $table->index('activation_code');
             $table->index('reset_password_code');
         });
+        return true;
     }
 
     /**
@@ -59,5 +57,6 @@ class AddUsersMetaTable extends Migration
     public function down()
     {
         $this->schema->drop($this->tableName);
+        return true;
     }
 }

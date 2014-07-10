@@ -13,7 +13,10 @@ angApp.controller('LoginController', ['$scope', '$rootScope', '$location', 'Sess
             credentials = secureLogin.secure(credentials);
             AuthProvider.login(credentials).then(function (response) {
                 if (response.status === 200) {
-                    SessionService.create(response.sessionId, response.name, response.role, response.authKey);
+                    SessionService.create(response.sessionId);
+                    SessionService.set("userId", response.name);
+                    SessionService.set("userRole", response.role);
+                    SessionService.set("authKey", response.authKey);
                     $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                 } else {
                     $rootScope.$broadcast(AUTH_EVENTS.loginFailed);

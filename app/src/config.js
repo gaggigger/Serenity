@@ -24,19 +24,29 @@ angApp
         "login": '/app/data/user.json',
         "logout": '/app/data/logout.json',
         "user": '/app/data/user.json',
-        "users": '/app/data/users.json'
+        "users": '/app/data/users.json',
+        "settings": '/app/data/settings.json'
     },
     test: {
         "login": '/app/data/user.json',
         "logout": '/app/data/logout.json',
         "user": '/app/data/user.json',
-        "users": '/app/data/users.json'
+        "users": '/app/data/users.json',
+        "settings": '/app/data/settings.json'
     },
-    live: {
+    staging: {
         "login": '/api/login/:userId/:password/:token',
-        "logout": '/login/:userId',
-        "user": '/user/:userId',
-        "users": '/users/'
+        "logout": '/api/logout',
+        "user": '/api/user/:userId',
+        "users": '/api/users',
+        "settings": '/api/settings'
+    },
+    production: {
+        "login": '/api/login/:userId/:password/:token',
+        "logout": '/api/logout',
+        "user": '/api/user/:userId',
+        "users": '/api/users',
+        "settings": '/api/settings'
     }
 })
 .config(function($locationProvider) {

@@ -1,24 +1,17 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Sernity\Migration;
 use Illuminate\Database\Seeder;
 
-class AddUsers
+class AddUsers extends Migration
 {
-    public $seed = true;
-    
-    protected $tableName;
-
-    /* @var \Illuminate\Database\Schema\Builder $schema */
-    protected $schema;
-
     public function init($capsule)
     {
-        $this->schema = $capsule::schema();
+        parent::init();
+        $this->seed = true;
         $this->tableName = 'users';
-        //$this->schema = $this->get('schema');
     }
-
+    
     /**
      * Do the migration
      */
@@ -53,6 +46,7 @@ class AddUsers
             $table->index('activation_code');
             $table->index('reset_password_code');
         });
+        return true;
         
     }
 
@@ -62,15 +56,17 @@ class AddUsers
     public function down()
     {
         $this->schema->drop($this->tableName);
+        return true;
     }
 }
 
-class AddUsersSeed extends Illuminate\Database\Seeder 
+class AddUsersSeed extends Seeder 
 {
-    public function run() {
-        DB::table($this->tableName)->insert(array('name' => 'Admin User', 'email' => 'admin@myapp.com', 'emailPublic' => false, 'userId' => 'admin', 'role' => 'admin', 'dateJoined' => date('Y-m-d'), 'group' => 'Administrators'));
-        DB::table($this->tableName)->insert(array('name' => 'Ginger Baker', 'email' => 'gbaker@myapp.com', 'emailPublic' => true, 'userId' => 'gBaker47362', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
-        DB::table($this->tableName)->insert(array('name' => 'Jack Bruce', 'email' => 'jbruce@myapp.com', 'emailPublic' => true, 'userId' => 'jbruce', 'role' => 'editor', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
-        DB::table($this->tableName)->insert(array('name' => 'Eric Clapton', 'email' => 'eclapton@myapp.com', 'emailPublic' => true, 'userId' => 'eclapton', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band')); 
+    public function run($capsule) {
+        $table = $capsule->table($this->tableName);
+        $table->insert(array('name' => 'Admin User', 'email' => 'admin@myapp.com', 'emailPublic' => false, 'userId' => 'admin', 'role' => 'admin', 'dateJoined' => date('Y-m-d'), 'group' => 'Administrators'));
+        $table->insert(array('name' => 'Ginger Baker', 'email' => 'gbaker@myapp.com', 'emailPublic' => true, 'userId' => 'gBaker47362', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
+        $table->insert(array('name' => 'Jack Bruce', 'email' => 'jbruce@myapp.com', 'emailPublic' => true, 'userId' => 'jbruce', 'role' => 'editor', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
+        $table->insert(array('name' => 'Eric Clapton', 'email' => 'eclapton@myapp.com', 'emailPublic' => true, 'userId' => 'eclapton', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band')); 
     }
 }

@@ -27,8 +27,9 @@
             <h1><span class="icon-cogs icon-large"></span>Site Settings</h1>
 
             <div class="row">
-                <section id="my-account-security-form" class="page container">
-                        <form id="userSecurityForm" class="form-horizontal" action="dashboard.html" method="post">
+                <form id="userSecurityForm" class="form-horizontal" data-ng-submit="saveSettings()">
+                    <section id="my-account-security-form" class="page container">
+                        
                             <div class="container">
 
                                 <div class="alert alert-block alert-info">
@@ -42,36 +43,37 @@
                                         <fieldset>
                                             <legend>Account Password</legend><br>
                                             <div class="control-group ">
-                                                <label class="control-label">Current Password <span class="required">*</span></label>
+                                                <label class="control-label">Site Name <span class="required">*</span></label>
                                                 <div class="controls">
-                                                    <input id="current-pass-control" name="password" class="span4" type="password" value="" autocomplete="false">
+                                                    <input id="site-name-control" data-ng-model="site_name" name="site_name" class="span4" type="text" value="" autocomplete="false" placeholder="Enter Site Name">
 
                                                 </div>
                                             </div>
                                             <div class="control-group ">
-                                                <label class="control-label">New Password</label>
+                                                <label class="control-label">Version </label>
                                                 <div class="controls">
-                                                    <input id="new-pass-control" name="newPassword" class="span4" type="password" value="" autocomplete="false">
+                                                    <input id="version-control" data-ng-model="version" name="version" class="span4" type="text" value="" autocomplete="false">
 
                                                 </div>
                                             </div>
                                             <div class="control-group ">
-                                                <label class="control-label">Verify New Password</label>
+                                                <label class="control-label">Allow Sign Up</label>
                                                 <div class="controls">
-                                                    <input id="new-pass-verify-control" name="newPasswordVerification" class="span4" type="password" value="" autocomplete="false">
-
+                                                    <input type="radio" name="allow_signup"  data-ng-model="allow_signup" value="1" /> Yes &nbsp;&nbsp;
+                                                    <input type="radio" name="allow_signup"  data-ng-model="allow_signup" value="-1" /> No 
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        
                     </section>
                     <footer id="submit-actions" class="form-actions">
                         <button id="submit-button" type="submit" class="btn btn-primary" name="action" value="CONFIRM">Save</button>
-                        <button type="submit" class="btn" name="action" value="CANCEL">Cancel</button>
+                        <button type="button" data-ng-click="cancel()" class="btn" name="action" value="CANCEL">Cancel</button>
                     </footer>
+                </form>
             </div>
         </div>
     </div>

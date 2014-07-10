@@ -1,26 +1,22 @@
 <?php
 
-use Phpmig\Migration\Migration;
+use Sernity\Migration;
 
-class AddUsersGroupsTable extends Migration
+class AddUsersGroups extends Migration
 {
-    protected $tableName;
-
-    /* @var \Illuminate\Database\Schema\Builder $schema */
-    protected $schema;
-
-    public function init()
+    public function init($capsule)
     {
+        parent::init();
+        $this->seed = false;
         $this->tableName = 'users_groups';
-        $this->schema = $this->get('schema');
     }
-
     /**
      * Do the migration
      */
     public function up()
     {
         /* @var \Illuminate\Database\Schema\Blueprint $table */
+        $this->schema->dropIfExists($this->tableName);
         $this->schema->create($this->tableName, function ($table)
         {
             $table->integer('user_id')->unsigned();
@@ -31,13 +27,14 @@ class AddUsersGroupsTable extends Migration
             $table->engine = 'InnoDB';
             $table->primary(array('user_id', 'group_id'));
         });
+        return true;
     }
-
     /**
      * Undo the migration
      */
     public function down()
     {
         $this->schema->drop($this->tableName);
+        return true;
     }
 }

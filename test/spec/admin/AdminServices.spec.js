@@ -29,10 +29,10 @@ describe("UsersService", function() {
             "userCount":4,
             "users": [
                 {
-                    "name": "Jeff Fox",
-                    "email": "jfox015@gmail.com",
+                    "name": "Admin User",
+                    "email": "admin@myapp.com",
                     "emailPublic": false,
-                    "userId": "jfox015",
+                    "userId": "admin",
                     "role": "admin",
                     "dateJoined": "2014-06-01",
                     "group": "Administrators"

@@ -1,26 +1,22 @@
 <?php
 
-use Phpmig\Migration\Migration;
+use Sernity\Migration;
 
-class AddGroupsTable extends Migration
+class AddGroups extends Migration
 {
-    protected $tableName;
-
-    /* @var \Illuminate\Database\Schema\Builder $schema */
-    protected $schema;
-
-    public function init()
+    public function init($capsule)
     {
+        parent::init();
+        $this->seed = false;
         $this->tableName = 'groups';
-        $this->schema = $this->get('schema');
     }
-
     /**
      * Do the migration
      */
     public function up()
     {
         /* @var \Illuminate\Database\Schema\Blueprint $table */
+        $this->schema->dropIfExists($this->tableName);
         $this->schema->create($this->tableName, function ($table)
         {
             $table->increments('id');
@@ -28,11 +24,10 @@ class AddGroupsTable extends Migration
             $table->text('permissions')->nullable();
             $table->timestamps();
 
-            // We'll need to ensure that MySQL uses the InnoDB engine to
-            // support the indexes, other engines aren't affected.
             $table->engine = 'InnoDB';
             $table->unique('name');
         });
+        return true;
     }
 
     /**
@@ -41,5 +36,6 @@ class AddGroupsTable extends Migration
     public function down()
     {
         $this->schema->drop($this->tableName);
+        return true;
     }
 }
