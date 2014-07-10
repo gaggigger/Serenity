@@ -8,10 +8,13 @@ $app->container->singleton('AdminController', function () {
 $app->container->singleton('ApiController', function () {
     return new ApiController();
 });
+$app->container->singleton('InstallController', function () {
+    return new InstallController();
+});
 
 // routes
-$app->get('/', function () use ($app) {
-    $app->ApiController->index();
+$app->get('/', function () use ($app, $capsule) {
+    $app->ApiController->index($capsule);
 })->name('home');
 
 $app->map('/login', function () use ($app) {
@@ -20,8 +23,12 @@ $app->map('/login', function () use ($app) {
 ->via('GET', 'POST')
 ->name('login');
 
-$app->get('/install/:type', function () use ($app) {
-    $app->InstallController->run($type);
+$app->get('/install', function () use ($app, $capsule) {
+    $app->InstallController->run("install", $capsule);
+})->name('install');
+
+$app->get('/install/:type', function () use ($app, $capsule) {
+    $app->InstallController->run($type, $capsule);
 })->name('install');
 
 $app->get('/logout', function () use ($app) {

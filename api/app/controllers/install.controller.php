@@ -2,30 +2,32 @@
 
 require_once "app/migration.php";
 
+define('MIGRATIONS_PATH', './migrations');
+
 class InstallController extends Controller {
 	
     public function index()
     {
         $this->run();
     }
-    public function run($type = null) {
+    public function run($type = null, $capsule = null) {
         error_reporting(E_ALL);
         if (!ini_get('display_errors'))
         {
             ini_set('display_errors', 1);
         }
-        $args = isset($type) ? filter_input($type) : "install";
+        $args = isset($type) ? $type : "install";
         switch ($args) 
         {
             case "install":
-                $this->installMigrations();
+                $this->installMigrations($capsule);
                  break;
             case "remove":
-                $this->removeMigrations();
+                $this->removeMigrations($capsule);
                 break;
         }
     }
-    function installMigrations()
+    function installMigrations($capsule)
     {
         $files = glob(MIGRATIONS_PATH.'/*.php');
         
@@ -34,7 +36,7 @@ class InstallController extends Controller {
 
             $class = substr(basename($file, '.php'), 4);
             $migration = new $class;
-            $migration->init();
+            $migration->init($capsule);
             if ($migration->up()) 
             {
                 echo("Sucessfully installed migration ".$file."<br />");
@@ -43,11 +45,12 @@ class InstallController extends Controller {
             {
                 $seeder = $class."Seed";
                 $seedClass = new $seeder;
-                $seedClass->run();
+                $seedClass->run($capsule);
             }
         }
+        $this->render('install'); 
     }
-    function removeMigrations()
+    function removeMigrations($capsule)
     {
         $files = glob(MIGRATIONS_PATH.'/*.php');
 
@@ -65,5 +68,6 @@ class InstallController extends Controller {
                 echo("Sucessfully removed migration ".$file."<br />");
             }
         }
+        $this->app->redirect('/api');
     }
 }

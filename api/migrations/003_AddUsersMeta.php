@@ -1,12 +1,12 @@
 <?php
 
-use Sernity\Migration;
+use Serenity\BaseMigration;
 
-class AddUsersMeta extends Migration
+class AddUsersMeta extends BaseMigration
 {
     public function init($capsule)
     {
-        parent::init();
+        parent::init($capsule);
         $this->seed = false;
         $this->tableName = 'users_meta';
     }
@@ -44,9 +44,10 @@ class AddUsersMeta extends Migration
             // We'll need to ensure that MySQL uses the InnoDB engine to
             // support the indexes, other engines aren't affected.
             $table->engine = 'InnoDB';
-            $table->unique('email');
-            $table->index('activation_code');
-            $table->index('reset_password_code');
+            $table->unique('user_id');
+            $table->index('user_id');
+            $table->index('last_name');
+            $table->index('first_name');
         });
         return true;
     }

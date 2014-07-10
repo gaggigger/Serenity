@@ -1,13 +1,13 @@
 <?php
 
-use Sernity\Migration;
+use Serenity\BaseMigration;
 use Illuminate\Database\Seeder;
 
-class AddUsers extends Migration
+class AddUsers extends BaseMigration
 {
     public function init($capsule)
     {
-        parent::init();
+        parent::init($capsule);
         $this->seed = true;
         $this->tableName = 'users';
     }
@@ -33,6 +33,7 @@ class AddUsers extends Migration
             $table->timestamp('last_login')->nullable();
             $table->string('persist_code')->nullable();
             $table->string('reset_password_code')->nullable();
+            $table->string('role');
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->timestamps();
@@ -63,10 +64,10 @@ class AddUsers extends Migration
 class AddUsersSeed extends Seeder 
 {
     public function run($capsule) {
-        $table = $capsule->table($this->tableName);
-        $table->insert(array('name' => 'Admin User', 'email' => 'admin@myapp.com', 'emailPublic' => false, 'userId' => 'admin', 'role' => 'admin', 'dateJoined' => date('Y-m-d'), 'group' => 'Administrators'));
-        $table->insert(array('name' => 'Ginger Baker', 'email' => 'gbaker@myapp.com', 'emailPublic' => true, 'userId' => 'gBaker47362', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
-        $table->insert(array('name' => 'Jack Bruce', 'email' => 'jbruce@myapp.com', 'emailPublic' => true, 'userId' => 'jbruce', 'role' => 'editor', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band'));
-        $table->insert(array('name' => 'Eric Clapton', 'email' => 'eclapton@myapp.com', 'emailPublic' => true, 'userId' => 'eclapton', 'role' => 'member', 'dateJoined' => date('Y-m-d'), 'group' => 'Cream Band')); 
+        $table = $capsule->table('users');
+        $table->insert(array('email' => 'admin@myapp.com', 'username' => 'admin', 'role' => 'admin'));
+        $table->insert(array('email' => 'gbaker@myapp.com', 'username' => 'gBaker47362', 'role' => 'member'));
+        $table->insert(array('email' => 'jbruce@myapp.com', 'username' => 'jbruce', 'role' => 'editor'));
+        $table->insert(array('email' => 'eclapton@myapp.com', 'username' => 'eclapton', 'role' => 'member')); 
     }
 }

@@ -4,7 +4,7 @@ namespace Serenity;
 
 use Illuminate\Database\Migrations\Migration;
 
-class Migration extends Migration
+class BaseMigration extends Migration
 {
     public $seed;
     
@@ -13,7 +13,7 @@ class Migration extends Migration
     /* @var \Illuminate\Database\Schema\Builder $schema */
     protected $schema;
 
-    public function init()
+    public function init($capsule)
     {
         $this->schema = $capsule::schema();
     }

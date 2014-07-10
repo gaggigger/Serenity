@@ -2,11 +2,10 @@
 
 class ApiController extends Controller {
 	
-    public function index($order = null)
+    public function index($capsule)
     {
-        $config = Config::findOrFail(1);
-        if (is_null($config)) {
-            $this->app->redirect('/install');
+        if (!Config::configInstalled($capsule)) {
+            $this->app->redirect('/api/install');
         } else {
            $this->render('api'); 
         }

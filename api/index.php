@@ -5,12 +5,14 @@ require_once "vendor/autoload.php";
 
 require_once "config.php";
 require_once "app/application.php";
+require_once "app/migration.php";
 
 // Controllers
 require_once "app/controller.php";
 require_once "app/controllers/login.controller.php";
 require_once "app/controllers/api.controller.php";
 require_once "app/controllers/admin.controller.php";
+require_once "app/controllers/install.controller.php";
 
 // Models
 require_once "app/models/BaseModel.php";
@@ -50,7 +52,9 @@ $capsule->bootEloquent();
 /* DB methods accessible via Slim instance */
 $capsule->setAsGlobal();
 
+$app->capule = $capsule;
 /* Sentry Auth */
+class_alias('Illuminate\Database\Capsule\Manager', 'Capsule');
 class_alias('Cartalyst\Sentry\Facades\Native\Sentry', 'Sentry');
 
 $app->container->singleton(

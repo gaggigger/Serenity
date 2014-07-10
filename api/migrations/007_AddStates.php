@@ -1,13 +1,13 @@
 <?php
 
-use Sernity\Migration;
+use Serenity\BaseMigration;
 use Illuminate\Database\Seeder;
 
-class AddStates extends Migration
+class AddStates extends BaseMigration
 {
     public function init($capsule)
     {
-        parent::init();
+        parent::init($capsule);
         $this->seed = true;
         $this->tableName = 'states_us';
     }
@@ -26,8 +26,8 @@ class AddStates extends Migration
 
             $table->engine = 'InnoDB';
             $table->primary(array('id', 'state_code'));
-            return true;
         });
+        return true;
     }
     /**
      * Undo the migration
@@ -42,7 +42,7 @@ class AddStates extends Migration
 class AddStatesSeed extends Seeder 
 {
     public function run($capsule) {
-        $table = $capsule->table($this->tableName);
+        $table = $capsule->table('states_us');
         $table->insert(array('id' => 1,'state_code' => 'AA','state_name' => 'AA Armed Forces'));
         $table->insert(array('id' => 2,'state_code' => 'AE','state_name' => 'AE Armed Forces'));
         $table->insert(array('id' => 3,'state_code' => 'AP','state_name' => 'AP Armed Forces'));
@@ -97,5 +97,6 @@ class AddStatesSeed extends Seeder
         $table->insert(array('id' => 52,'state_code' => 'WV','state_name' => 'West Virginia'));
         $table->insert(array('id' => 53,'state_code' => 'WI','state_name' => 'Wisconsin'));
         $table->insert(array('id' => 54,'state_code' => 'WY','state_name' => 'Wyoming'));
+        return true;
     }
 }

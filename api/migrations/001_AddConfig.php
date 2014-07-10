@@ -1,13 +1,13 @@
 <?php
 
-use Sernity\Migration;
+use Sernity\BaseMigration;
 use Illuminate\Database\Seeder;
 
-class AddConfig extends Migration
+class AddConfig extends Serenity\BaseMigration
 {
     public function init($capsule)
     {
-        parent::init();
+        parent::init($capsule);
         $this->seed = true;
         $this->tableName = 'config';
     }
@@ -46,7 +46,7 @@ class AddConfig extends Migration
 class AddConfigSeed extends Seeder 
 {
     public function run($capsule) {
-        $table = $capsule->table($this->tableName);
+        $table = $capsule->table('config');
         $table->insert(array('key'=>'site_name','value'=>'Serenity API Demo'));
         $table->insert(array('key'=>'version','value'=>'0.1'));
         $table->insert(array('key'=>'allow_signup','value'=>'1'));

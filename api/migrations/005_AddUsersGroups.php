@@ -1,12 +1,12 @@
 <?php
 
-use Sernity\Migration;
+use Serenity\BaseMigration;
 
-class AddUsersGroups extends Migration
+class AddUsersGroups extends BaseMigration
 {
     public function init($capsule)
     {
-        parent::init();
+        parent::init($capsule);
         $this->seed = false;
         $this->tableName = 'users_groups';
     }

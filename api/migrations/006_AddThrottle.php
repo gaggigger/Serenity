@@ -1,12 +1,12 @@
 <?php
 
-use Sernity\Migration;
+use Serenity\BaseMigration;
 
-class AddThrottle extends Migration
+class AddThrottle extends BaseMigration
 {
     public function init($capsule)
     {
-        parent::init();
+        parent::init($capsule);
         $this->seed = false;
         $this->tableName = 'users_throttle';
     }
