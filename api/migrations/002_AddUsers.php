@@ -69,5 +69,6 @@ class AddUsersSeed extends Seeder
         $table->insert(array('email' => 'gbaker@myapp.com', 'username' => 'gBaker47362', 'role' => 'member'));
         $table->insert(array('email' => 'jbruce@myapp.com', 'username' => 'jbruce', 'role' => 'editor'));
         $table->insert(array('email' => 'eclapton@myapp.com', 'username' => 'eclapton', 'role' => 'member')); 
+        return true;
     }
 }

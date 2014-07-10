@@ -50,5 +50,6 @@ class AddConfigSeed extends Seeder
         $table->insert(array('key'=>'site_name','value'=>'Serenity API Demo'));
         $table->insert(array('key'=>'version','value'=>'0.1'));
         $table->insert(array('key'=>'allow_signup','value'=>'1'));
+        return true;
     }
 }

@@ -31,6 +31,7 @@ class InstallController extends Controller {
     {
         $files = glob(MIGRATIONS_PATH.'/*.php');
         
+        $outStatus = '';
         foreach ($files as $file) {
             require_once($file);
 
@@ -39,16 +40,19 @@ class InstallController extends Controller {
             $migration->init($capsule);
             if ($migration->up()) 
             {
-                echo("Sucessfully installed migration ".$file."<br />");
+                $outStatus .= "Sucessfully installed migration ".$file."<br />";
             }
             if ($migration->seed === true) 
             {
                 $seeder = $class."Seed";
                 $seedClass = new $seeder;
-                $seedClass->run($capsule);
+                if ($seedClass->run($capsule)) {
+                    $outStatus .= "Sucessfully seeded the data for ".$file."<br />";
+                }
             }
         }
-        $this->render('install'); 
+        $data['status'] = $outStatus;
+        $this->render('install', $data); 
     }
     function removeMigrations($capsule)
     {
