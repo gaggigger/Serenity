@@ -12,7 +12,7 @@
 angApp
 .value('isAdmin', false)
 .value('config', {
-    mode: 'development' // options development, test, staging, production
+    mode: 'staging' // options development, test, staging, production
 })
 .constant('paths', {
     /**
@@ -35,14 +35,14 @@ angApp
         "settings": '/app/data/settings.json'
     },
     staging: {
-        "login": '/api/login/:userId/:password/:token',
+        "login": '/api/login/:email/:password',
         "logout": '/api/logout',
         "user": '/api/user/:userId',
         "users": '/api/users',
         "settings": '/api/settings'
     },
     production: {
-        "login": '/api/login/:userId/:password/:token',
+        "login": '/api/login/:email/:password/:token',
         "logout": '/api/logout',
         "user": '/api/user/:userId',
         "users": '/api/users',

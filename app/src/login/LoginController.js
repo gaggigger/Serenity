@@ -6,7 +6,8 @@ angApp.controller('LoginController', ['$scope', '$rootScope', '$location', 'Sess
         $scope.flash = flashMessaging;
         $scope.credentials = {
             email: '',
-            password: ''
+            password: '',
+            remember: -1
         };
 
         $scope.login = function (credentials) {
@@ -14,7 +15,7 @@ angApp.controller('LoginController', ['$scope', '$rootScope', '$location', 'Sess
             AuthProvider.login(credentials).then(function (response) {
                 if (response.status === 200) {
                     SessionService.create(response.sessionId);
-                    SessionService.set("userId", response.name);
+                    SessionService.set("email", response.email);
                     SessionService.set("userRole", response.role);
                     SessionService.set("authKey", response.authKey);
                     $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
@@ -25,7 +26,7 @@ angApp.controller('LoginController', ['$scope', '$rootScope', '$location', 'Sess
         };
         
         $rootScope.$on(AUTH_EVENTS.logout, function(e) {
-            AuthProvider.logout(SessionService.get('userId')).then(function(response) {
+            AuthProvider.logout(SessionService.get('email')).then(function(response) {
                 if (response.status === 200) {
                     SessionService.destroy();
                     $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);

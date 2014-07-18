@@ -27,9 +27,9 @@ $app->get('/install', function () use ($app, $capsule) {
     $app->InstallController->run("install", $capsule);
 })->name('install');
 
-$app->get('/install/:type', function () use ($app, $capsule) {
-    $app->InstallController->run($type, $capsule);
-})->name('install');
+$app->get('/uninstall', function () use ($app, $capsule) {
+    $app->InstallController->run("remove", $capsule);
+})->name('uninstall');
 
 $app->get('/logout', function () use ($app) {
     $app->LoginController->logout();
